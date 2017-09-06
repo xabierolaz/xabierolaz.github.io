@@ -5,7 +5,7 @@ h1, h2, h3, h4, h5, h6 {color: #333;}
 h2 {font-size: 30px;margin-bottom: 20px;}
 h3 {font-size: 18px;}
 .btn {border: 0;border-radius: 0;}
-.btn.btn-primary:hover {background-color: #017fb5;}
+.btn.btn-primary:hover {background-color: #333232;}
 a {text-decoration: none;-webkit-transition: 300ms;-moz-transition: 300ms;-o-transition: 300ms;transition: 300ms;}
 a:focus, a:hover {text-decoration: none;outline: none}
 section {padding: 25px 0;}
