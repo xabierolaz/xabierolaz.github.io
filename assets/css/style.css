@@ -9,7 +9,7 @@ h3 {font-size: 18px;}
 a {text-decoration: none;-webkit-transition: 300ms;-moz-transition: 300ms;-o-transition: 300ms;transition: 300ms;}
 a:focus, a:hover {text-decoration: none;outline: none}
 section {padding: 25px 0;}
-section .title h2 {background: #f3f3f3;padding: 15px;font-size: 22px;font-size: 24px;font-weight: 900;margin-bottom: 35px;text-transform: uppercase;}
+section .title h2 {background: #333232;padding: 15px;font-size: 22px;font-size: 24px;font-weight: 900;margin-bottom: 35px;text-transform: uppercase;}
 .btn:hover {background-color: #027db3;color: #fff;}
 .preloader {position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 999999;background: #fff;}
 .preloader > i {position: absolute;font-size: 36px;line-height: 36px;top: 50%;left: 50%;height: 36px;width: 36px;margin-top: -15px;margin-left: -15px;display: inline-block;color: #555;}
@@ -19,7 +19,7 @@ section .title h2 {background: #f3f3f3;padding: 15px;font-size: 22px;font-size: 
 /*#####--- Header CSS Start ---#####*/
 
 /* Menu & Logo CSS */
-#header .navbar-default {background: url(../images/header-bg.jpg);background-size: 50% 100%;border: 0px;border-color: #d4d4d4;margin-bottom: 5px;}
+#header .navbar-default {background: url(../images/header-bg.jpg);background-size: 50% 100%;border: 0px;border-color: #333232;margin-bottom: 5px;}
 #header .navbar-default .navbar-nav>li>a {color: #fff;}
 #header .navbar-default .navbar-nav>.active>a {background-color: #fbfbfb;border-top: 3px double #ddd;}
 #header .navbar-default .navbar-nav a:hover, #header .navbar-default .navbar-nav>.active>a:hover {background-color: #fdfdfd !important;border-top: 3px solid #aaa;}
@@ -46,7 +46,7 @@ section .title h2 {background: #f3f3f3;padding: 15px;font-size: 22px;font-size: 
 #beite-home-slider .carousel-fade .carousel-inner .next.left, #beite-home-slider .carousel-fade .carousel-inner .prev.right {opacity: 1;}
 #beite-home-slider .carousel-fade .carousel-control {z-index: 2;}
 #beite-home-slider .left-control, #beite-home-slider .right-control {position: absolute;top: 45%;height: 51px;width: 51px;line-height: 35px;border-radius: 25%;border:7px double #fff;z-index: 20;font-size: 24px;color: #fff;text-align: center;-webkit-transition: all 0.5s ease;-moz-transition: all 0.5s ease;-ms-transition: all 0.5s ease;-o-transition: all 0.5s ease;transition: all 0.5s ease;}
-#beite-home-slider .left-control {left: 51px} 
+#beite-home-slider .left-control {left: 51px}
 #beite-home-slider .right-control {right: 51px;}
 #beite-home-slider .left-control:hover, #beite-home-slider .right-control:hover {color: #fff;}
 #beite-home-slider .fa-angle-down {position: absolute;left: 50%;bottom: 50px;color: #fff;display: inline-block;width: 24px;margin-left: -12px;font-size: 24px;line-height: 24px;z-index: 999;-webkit-animation: bounce 3000ms infinite;animation: bounce 3000ms infinite;}
