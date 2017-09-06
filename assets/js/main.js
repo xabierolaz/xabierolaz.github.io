@@ -1,64 +1,64 @@
-/*
-	Miniport by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+jQuery(function($) {
 
-(function($) {
-
-	skel
-		.breakpoints({
-			desktop: '(min-width: 737px)',
-			tablet: '(min-width: 737px) and (max-width: 1200px)',
-			mobile: '(max-width: 736px)'
-		})
-		.viewport({
-			breakpoints: {
-				tablet: {
-					width: 1080
-				}
-			}
-		});
-
-	$(function() {
-
-		var	$window = $(window),
-			$body = $('body');
-
-		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
-
-			$window.on('load', function() {
-				$body.removeClass('is-loading');
-			});
-
-		// Fix: Placeholder polyfill.
-			$('form').placeholder();
-
-		// Prioritize "important" elements on mobile.
-			skel.on('+mobile -mobile', function() {
-				$.prioritize(
-					'.important\\28 mobile\\29',
-					skel.breakpoint('mobile').active
-				);
-			});
-
-		// CSS polyfills (IE<9).
-			if (skel.vars.IEVersion < 9)
-				$(':last-child').addClass('last-child');
-
-		// Scrolly.
-			$window.load(function() {
-
-				var x = parseInt($('.wrapper').first().css('padding-top')) - 15;
-
-				$('#nav a, .scrolly').scrolly({
-					speed: 1000,
-					offset: x
-				});
-
-			});
-
+	//Preloader
+	var preloader = $('.preloader');
+	$(window).load(function(){
+		preloader.remove();
 	});
+	
+	//Header Slider
+	var slideHeight = $(window).height();
+	$('#beite-home-slider .item').css('height',slideHeight-450);
 
-})(jQuery);
+	$(window).resize(function(){'use strict',
+		$('#beite-home-slider .item').css('height',slideHeight-450);
+	});
+	
+	//Portfolio
+	$(".portfolio-gallery:first a[rel^='prettyPhoto']").prettyPhoto({
+		animation_speed:'normal',
+		slideshow:3000, 
+		autoplay_slideshow: true
+	});
+	
+	// Contact form
+	var form = $('#contact-form');
+	form.submit(function(event){
+		event.preventDefault();
+		var form_status = $('<div class="form_status"></div>');
+		$.ajax({
+			url: $(this).attr('action'),
+			beforeSend: function(){
+				form.prepend( form_status.html('<p><i class="fa fa-spinner fa-spin"></i> Email is sending...</p>').fadeIn() );
+			}
+		}).done(function(data){
+			form_status.html('<p class="text-success">Thank you for contact us. We will contact you as soon as possible.</p>').delay(3000).fadeOut();
+		});
+	});
+	
+	//Google Map
+	function initialize_map() {
+		var latitude = $('#google-map').data('latitude')
+		var longitude = $('#google-map').data('longitude')
+		var myLatlng = new google.maps.LatLng(latitude,longitude);
+		var mapOptions = {
+			zoom: 14,
+			scrollwheel: false,
+			center: myLatlng
+		};
+		var map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
+		var contentString = '';
+		var infowindow = new google.maps.InfoWindow({
+			content: '<div class="map-content"><ul class="address">' + $('.address').html() + '</ul></div>'
+		});
+		var marker = new google.maps.Marker({
+			position: myLatlng,
+			map: map
+		});
+		google.maps.event.addListener(marker, 'click', function() {
+			infowindow.open(map,marker);
+		});
+	}
+	google.maps.event.addDomListener(window, 'load', initialize_map);
+	
+});
