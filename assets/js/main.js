@@ -1,24 +1,18 @@
 /*
-	Miniport by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Snapshot by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
 
 (function($) {
 
-	skel
-		.breakpoints({
-			desktop: '(min-width: 737px)',
-			tablet: '(min-width: 737px) and (max-width: 1200px)',
-			mobile: '(max-width: 736px)'
-		})
-		.viewport({
-			breakpoints: {
-				tablet: {
-					width: 1080
-				}
-			}
-		});
+	skel.breakpoints({
+		xlarge: '(max-width: 1680px)',
+		large: '(max-width: 1280px)',
+		medium: '(max-width: 980px)',
+		small: '(max-width: 736px)',
+		xsmall: '(max-width: 480px)'
+	});
 
 	$(function() {
 
@@ -29,33 +23,79 @@
 			$body.addClass('is-loading');
 
 			$window.on('load', function() {
-				$body.removeClass('is-loading');
+				window.setTimeout(function() {
+					$body.removeClass('is-loading');
+				}, 100);
 			});
 
 		// Fix: Placeholder polyfill.
 			$('form').placeholder();
 
-		// Prioritize "important" elements on mobile.
-			skel.on('+mobile -mobile', function() {
+		// Prioritize "important" elements on medium.
+			skel.on('+medium -medium', function() {
 				$.prioritize(
-					'.important\\28 mobile\\29',
-					skel.breakpoint('mobile').active
+					'.important\\28 medium\\29',
+					skel.breakpoint('medium').active
 				);
 			});
 
-		// CSS polyfills (IE<9).
-			if (skel.vars.IEVersion < 9)
-				$(':last-child').addClass('last-child');
-
 		// Scrolly.
-			$window.load(function() {
+			$('.scrolly').scrolly();
 
-				var x = parseInt($('.wrapper').first().css('padding-top')) - 15;
+		// Gallery.
+			$('.gallery').each(function() {
 
-				$('#nav a, .scrolly').scrolly({
-					speed: 1000,
-					offset: x
-				});
+				var	$gallery = $(this),
+					$content = $gallery.find('.content');
+
+				// Poptrox.
+					$content.poptrox({
+						usePopupCaption: true
+					});
+
+				// Tabs.
+					$gallery.each( function() {
+
+						var $this = $(this),
+							$tabs = $this.find('.tabs a'),
+							$media = $this.find('.media');
+
+						$tabs.on('click', function(e) {
+
+							var $this = $(this),
+								tag = $this.data('tag');
+
+							// Prevent default.
+							 	e.preventDefault();
+
+							// Remove active class from all tabs.
+								$tabs.removeClass('active');
+
+							// Reapply active class to current tab.
+								$this.addClass('active');
+
+							// Hide media that do not have the same class as the clicked tab.
+								$media
+									.fadeOut('fast')
+									.each(function() {
+
+										var $this = $(this);
+
+										if ($this.hasClass(tag))
+											$this
+												.fadeOut('fast')
+												.delay(200)
+												.queue(function(next) {
+													$this.fadeIn();
+													next();
+												});
+
+									});
+
+						});
+
+					});
+
 
 			});
 
